@@ -1,0 +1,27 @@
+
+.productCard {
+    height: 100%;
+    background-color: var(--clr-cream);
+    padding: 1rem;
+    border: 1px solid #00000042;
+    border-radius: 20px;
+    box-shadow: 2px 2px 10px 0 rgba(0, 0, 0, 0.1);
+}    
+
+.productImg {
+    border-radius: 10px;
+    object-fit: contain;
+    height: 300px;
+    width: 300px;
+}
+
+.productCard p {
+    padding: 5px 0;
+    font-size: smaller;
+    color: var(--clr-navy);
+}
+
+.productCard button {
+    padding: 0.5rem 1rem;
+    justify-content: flex-end;
+}

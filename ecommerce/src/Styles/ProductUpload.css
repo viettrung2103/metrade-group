@@ -1,0 +1,38 @@
+.uploadForm {
+    padding: 40px;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.textInput {
+    background-color: whitesmoke;
+}
+
+.uploadForm button {
+    border-radius: 10px;
+    background-color: whitesmoke;
+    color: #173b45
+    
+}
+
+.cancelBtn {
+    border-radius: 10px;
+    background-color: whitesmoke;
+    color: #173b45
+}
+
+button.sellBtn {
+    border-radius: 10px;
+    background-color: #f37c25;
+    color: #fbf5f5;
+}
+
+.quantityInput {
+    width: 100px;
+}
+
+button.quantityBtn {
+    width: 10px;
+    padding: 1rem;
+}

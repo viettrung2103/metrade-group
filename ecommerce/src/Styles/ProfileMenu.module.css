@@ -1,0 +1,59 @@
+.profileMenu {
+    font-size: 1rem;
+}
+
+.profileMenu .profileButton {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.profileMenu .profileButton .profileName {
+    overflow: clip;
+    overflow-clip-margin: 1rem;
+    text-overflow: ellipsis;
+    max-width: 15ch;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.profileMenu .profileButton img {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profileMenu .profileMenuItems {
+    right: 0;
+    left: auto;
+    min-width: 13rem;
+}
+
+.profileMenu .profileMenuItems .profileMenuItem {
+    padding: 0.5rem 0.75rem;
+}
+
+.profileMenu .profileMenuItems .profileMenuItem:hover
+{
+    background-color: var(--clr-nude);
+}
+
+.profileMenu .profileMenuItems .profileMenuItem:last-child {
+    color: var(--clr-red);
+}
+
+.profileMenu .profileMenuItems .balanceItem {
+    display: flex;
+    justify-content: space-between;
+}
+
+.profileMenu .profileMenuItems .balanceItem .balance {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.profileMenu .profileMenuItems .balanceItem .balance img {
+    width: 1.5rem;
+    height: 1.5rem;
+}

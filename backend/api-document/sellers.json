@@ -1,0 +1,407 @@
+{
+  "/seller/upload": {
+    "post": {
+      "tags": ["Sellers"],
+      "summary": "Upload a new product",
+      "security": [
+        {
+          "accessTokenCookie": []
+        }
+      ],
+      "requestBody": {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Product"
+            },
+            "example": {
+              "user_id": "66fc69851c83d6b430f8a4f7",
+              "name": "Laptop",
+              "image": "http://example.com/image.jpg",
+              "photos": [
+                "http://example.com/photo1.jpg",
+                "http://example.com/photo2.jpg"
+              ],
+              "description": "A powerful laptop for developers.",
+              "price": 1200,
+              "pickup_point": "Myllypuro",
+              "category_id": "66e341dd97aaa45c6b839f81",
+              "keywords": ["laptop", "developer", "powerful"],
+              "stock_quantity": 10,
+              "status": "active"
+            }
+          }
+        }
+      },
+      "responses": {
+        "201": {
+          "description": "Product uploaded successfully",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "success": {
+                    "type": "boolean"
+                  },
+                  "message": {
+                    "type": "string"
+                  },
+                  "product": {
+                    "$ref": "#/components/schemas/Product"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "400": {
+          "description": "Invalid User Id or Category Id",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "success": {
+                    "type": "boolean"
+                  },
+                  "message": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "500": {
+          "description": "Error uploading product",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "success": {
+                    "type": "boolean"
+                  },
+                  "message": {
+                    "type": "string"
+                  },
+                  "error": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "/seller/imageUpload": {
+    "post": {
+      "tags": ["Sellers"],
+      "summary": "Upload new product images",
+      "security": [
+        {
+          "accessTokenCookie": []
+        }
+      ],
+      "requestBody": {
+        "required": true,
+        "content": {
+          "multipart/form-data": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "files": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "responses": {
+        "200": {
+          "description": "Images uploaded successfully",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "urls": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "500": {
+          "description": "Error uploading images",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "message": {
+                    "type": "string"
+                  },
+                  "error": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "/seller/selling-page/inventory/{userId}": {
+    "get": {
+      "tags": ["Sellers"],
+      "summary": "Get products by user ID",
+      "security": [
+        {
+          "accessTokenCookie": []
+        }
+      ],
+      "parameters": [
+        {
+          "name": "userId",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "User ID"
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Products retrieved successfully",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Product"
+                }
+              }
+            }
+          }
+        },
+        "404": {
+          "description": "No products found",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "message": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "500": {
+          "description": "Internal server error",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "message": {
+                    "type": "string"
+                  },
+                  "error": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "/seller/update/{id}": {
+    "put": {
+      "tags": ["Sellers"],
+      "summary": "Update product details",
+      "security": [
+        {
+          "accessTokenCookie": []
+        }
+      ],
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Product ID"
+        }
+      ],
+      "requestBody": {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Product"
+            },
+            "example": {
+              "name": "Laptop",
+              "image": "http://example.com/image.jpg",
+              "photos": [
+                "http://example.com/photo1.jpg",
+                "http://example.com/photo2.jpg"
+              ],
+              "description": "A powerful laptop for developers.",
+              "price": 1200,
+              "pickup_point": "Myllypuro",
+              "category_id": "60d0fe4f5311236168a109cb",
+              "keywords": ["laptop", "developer", "powerful"],
+              "stock_quantity": 10,
+              "status": "active"
+            }
+          }
+        }
+      },
+      "responses": {
+        "200": {
+          "description": "Product updated successfully",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "success": {
+                    "type": "boolean"
+                  },
+                  "message": {
+                    "type": "string"
+                  },
+                  "product": {
+                    "$ref": "#/components/schemas/Product"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "400": {
+          "description": "Invalid Category Id",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "success": {
+                    "type": "boolean"
+                  },
+                  "message": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "500": {
+          "description": "Error updating product",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "message": {
+                    "type": "string"
+                  },
+                  "error": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Product": {
+        "type": "object",
+        "properties": {
+          "user_id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "image": {
+            "type": "string"
+          },
+          "photos": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "description": {
+            "type": "string"
+          },
+          "price": {
+            "type": "number"
+          },
+          "pickup_point": {
+            "type": "string",
+            "enum": ["Myllypuro", "Karamalmi", "Myyrmäki"]
+          },
+          "category_id": {
+            "type": "string"
+          },
+          "stock_quantity": {
+            "type": "number"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["processing", "active", "sold"]
+          },
+          "deleted_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "keywords": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      }
+    }
+  }
+}

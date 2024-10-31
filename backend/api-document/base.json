@@ -1,0 +1,390 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Metrade API",
+    "description": "This API is used for managing users, products, orders, order items, carts, cart items, token.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/api",
+      "description": "Local development server"
+    }
+  ],
+  "components": {
+    "schemas": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "first_name": {
+            "type": "string",
+            "example": "John"
+          },
+          "last_name": {
+            "type": "string",
+            "example": "Doe"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "john.doe@example.com"
+          },
+          "phone": {
+            "type": "string",
+            "example": "+123456789"
+          },
+          "balance": {
+            "type": "number",
+            "example": 1000
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "user",
+              "admin",
+              "seller"
+            ],
+            "example": "user"
+          },
+          "photo_url": {
+            "type": "string",
+            "example": "https://example.com/images/user.png"
+          },
+          "is_verified": {
+            "type": "boolean",
+            "example": true
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "active",
+              "banned",
+              "deleted"
+            ],
+            "example": "active"
+          }
+        }
+      },
+      "Product": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Laptop"
+          },
+          "description": {
+            "type": "string",
+            "example": "A powerful laptop for developers."
+          },
+          "price": {
+            "type": "number",
+            "example": 1200
+          },
+          "stock_quantity": {
+            "type": "number",
+            "example": 10
+          },
+          "pickup_point": {
+            "type": "string",
+            "enum": [
+              "Myllypuro",
+              "Karamalmi",
+              "Myyrmäki"
+            ],
+            "example": "Myllypuro"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "processing",
+              "active",
+              "sold"
+            ],
+            "example": "active"
+          }
+        }
+      },
+      "Order": {
+        "type": "object",
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "example": "60d5f489f9e7c4a5d37fbe29",
+            "description": "Reference to the User ID"
+          },
+          "total_item_quantity": {
+            "type": "number",
+            "example": 5,
+            "description": "Total number of items in the order"
+          },
+          "total_price": {
+            "type": "number",
+            "example": 200.5,
+            "description": "Total price of the order"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2024-10-04T08:40:51.620Z",
+            "description": "Order creation timestamp"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2024-10-04T09:00:51.620Z",
+            "description": "Order update timestamp"
+          }
+        }
+      },
+      "OrderItem": {
+        "type": "object",
+        "properties": {
+          "order_id": {
+            "type": "string",
+            "example": "60d5f489f9e7c4a5d37fbe29",
+            "description": "Reference to the Order ID"
+          },
+          "product_id": {
+            "type": "string",
+            "example": "60d5f489f9e7c4a5d37fbe28",
+            "description": "Reference to the Product ID"
+          },
+          "product_name": {
+            "type": "string",
+            "example": "Laptop"
+          },
+          "image": {
+            "type": "string",
+            "example": "https://example.com/images/laptop.png"
+          },
+          "sold_quantity": {
+            "type": "number",
+            "example": 2
+          },
+          "price": {
+            "type": "number",
+            "example": 1200
+          },
+          "pickup_point": {
+            "type": "string",
+            "enum": [
+              "Myllypuro",
+              "Karamalmi",
+              "Myyrmäki"
+            ],
+            "example": "Myllypuro"
+          },
+          "sub_total": {
+            "type": "number",
+            "example": 2400,
+            "description": "Calculated as sold_quantity * price"
+          },
+          "selling_status": {
+            "type": "string",
+            "enum": [
+              "processing",
+              "await-pickup",
+              "delivered",
+              "cancelled"
+            ],
+            "example": "processing"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2024-10-04T08:40:51.620Z",
+            "description": "OrderItem creation timestamp"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2024-10-04T09:00:51.620Z",
+            "description": "OrderItem update timestamp"
+          }
+        }
+      },
+      "Category": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Electronics",
+            "description": "The name of the category"
+          },
+          "description": {
+            "type": "string",
+            "example": "Category for all electronic products",
+            "description": "Description of the category"
+          },
+          "parent_id": {
+            "type": "string",
+            "example": "60d5f489f9e7c4a5d37fbe28",
+            "description": "Reference to the parent category ID"
+          },
+          "ancestors": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "description": "References to all ancestor categories"
+            },
+            "example": [
+              "60d5f489f9e7c4a5d37fbe27",
+              "60d5f489f9e7c4a5d37fbe26"
+            ],
+            "description": "Array of ancestor categories"
+          },
+          "children": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "description": "References to direct child categories"
+            },
+            "example": [
+              "60d5f489f9e7c4a5d37fbe29",
+              "60d5f489f9e7c4a5d37fbe30"
+            ],
+            "description": "Array of direct child categories"
+          },
+          "is_active": {
+            "type": "boolean",
+            "example": true,
+            "description": "Indicates whether the category is active"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2024-10-04T08:40:51.620Z",
+            "description": "Category creation timestamp"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2024-10-04T09:00:51.620Z",
+            "description": "Category update timestamp"
+          }
+        }
+      },
+      "Cart": {
+        "type": "object",
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "example": "60d5f489f9e7c4a5d37fbe28",
+            "description": "Reference to the User ID"
+          },
+          "cart_items": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "description": "References to CartItem IDs"
+            },
+            "example": [
+              "60d5f489f9e7c4a5d37fbe29",
+              "60d5f489f9e7c4a5d37fbe30"
+            ],
+            "description": "Array of CartItem references"
+          },
+          "is_active": {
+            "type": "boolean",
+            "example": true,
+            "description": "Indicates whether the cart is active"
+          },
+          "deleted_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2024-10-04T09:00:51.620Z",
+            "description": "Timestamp of when the cart was deleted (soft deletion)"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2024-10-04T08:40:51.620Z",
+            "description": "Cart creation timestamp"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2024-10-04T09:00:51.620Z",
+            "description": "Cart update timestamp"
+          }
+        }
+      },
+      "CartItem": {
+        "type": "object",
+        "properties": {
+          "cart_id": {
+            "type": "string",
+            "example": "60d5f489f9e7c4a5d37fbe28",
+            "description": "Reference to the Cart ID"
+          },
+          "product_id": {
+            "type": "string",
+            "example": "60d5f489f9e7c4a5d37fbe29",
+            "description": "Reference to the Product ID"
+          },
+          "adding_quantity": {
+            "type": "number",
+            "example": 2,
+            "description": "The quantity of the product being added to the cart"
+          },
+          "limit_quantity": {
+            "type": "number",
+            "example": 10,
+            "description": "The maximum quantity of the product allowed in the cart"
+          },
+          "sub_total": {
+            "type": "number",
+            "example": 100.0,
+            "description": "Calculated as adding_quantity * price"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "active",
+              "deactive"
+            ],
+            "example": "active",
+            "description": "The status of the cart item"
+          },
+          "deleted_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2024-10-04T09:00:51.620Z",
+            "description": "Timestamp of when the cart item was deleted"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2024-10-04T08:40:51.620Z",
+            "description": "Cart item creation timestamp"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2024-10-04T09:00:51.620Z",
+            "description": "Cart item update timestamp"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "accessTokenCookie": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "accessToken"
+      },
+      "refreshTokenCookie": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "refreshToken"
+      }
+    }
+  },
+  "security": [
+    {
+      "accessTokenCookie": [],
+      "refreshTokenCookie": []
+    }
+  ],
+  "paths": {}
+}

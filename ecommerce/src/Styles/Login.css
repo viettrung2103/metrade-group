@@ -1,0 +1,116 @@
+.signin-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100svh;
+  color: var(--clr-black);
+}
+
+.signin-wrapper .signin-image {
+  width: 100%;
+  max-width: 20rem;
+}
+
+.signin-wrapper .signin-image img {
+  width: 100%;
+  height: auto;
+}
+
+.signin-form-container {
+  width: 100%;
+  max-width: 25rem;
+  padding: 2rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.signin-form-container .signin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.signin-form-container .signin-title {
+  text-align: center;
+  font-size: 1.875rem;
+  font-weight: bold;
+}
+
+.signin-form-container .signin-label {
+  font-weight: bold;
+  color: #183942ad;
+}
+
+.signin-form-container .signin-input {
+  border: none;
+  border-bottom: 1px solid;
+  border-radius: 0;
+  font-weight: bold;
+  padding-left: 0;
+}
+
+.signin-form-container .signin-input:focus {
+  box-shadow: 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+.signin-form-container .signin-button {
+  width: 15rem;
+  align-self: center;
+  margin: 1rem 0;
+  background-color: var(--clr-green);
+  font-weight: bolder;
+}
+
+.signin-form-container .signin-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.signin-form-container .signin-footer .help-text {
+  position: relative;
+  text-align: center;
+}
+
+.signin-form-container .signin-footer .help-text:before {
+  content: "";
+  position: absolute;
+  height: 1px;
+  background-color: #183942ad;
+  top: 50%;
+  left: 15rem;
+  right: 0;
+}
+
+.signin-form-container .signin-footer .help-text:after {
+  content: "";
+  position: absolute;
+  height: 1px;
+  background-color: #183942ad;
+  top: 50%;
+  right: 15rem;
+  left: 0;
+}
+
+.signin-form-container .signin-footer .signup-button {
+  text-transform: none;
+  box-shadow: none;
+  background-color: #ffffff;
+  color: #000;
+  border: 1px solid;
+  border-radius: 0.5rem;
+}
+
+.signup-div {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.signup-button {
+  width: 100%;
+}

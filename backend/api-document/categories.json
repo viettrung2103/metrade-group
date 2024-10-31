@@ -1,0 +1,73 @@
+{
+    
+  "/categories/main-category/main-relationship": {
+      "get": {
+        "tags": ["Category"],
+        "security": [],
+        "summary": "Get main categories with hierarchy",
+        "operationId": "categoryHierarchy",
+        "responses": {
+          "200": {
+            "description": "List of categories with hierarchy",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Category"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No main categories found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/categories/get-children-categories/{categoryId}": {
+      "get": {
+        "tags": ["Category"],
+        "security": [],
+        "summary": "Get child categories and products",
+        "operationId": "getChildrenProducts",
+        "parameters": [
+          {
+            "name": "categoryId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID of the category to retrieve children for"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of products in the category and its children",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Product"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Category not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    }
+  }
+

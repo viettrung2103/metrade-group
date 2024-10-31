@@ -1,0 +1,26 @@
+.searchContainer {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    gap: 0.25rem;
+}
+
+.searchBar {
+    height: 3rem;
+    border-radius: 13.339552879333496px;
+    border: none;
+    width: 100%;
+}
+
+.searchBar:focus {
+    outline: none;
+}
+
+.searchButton {
+    background-color: transparent;
+    border: none;
+    height: 2.5rem;
+    width: 2.5rem;
+    cursor: pointer;
+    color: var(--clr-navy);
+}

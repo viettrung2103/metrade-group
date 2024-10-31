@@ -1,0 +1,42 @@
+.aboutContact {
+    /* padding: 20px; */
+    font-family: "Cambay", sans-serif;
+    font-style: italic;
+    font-size: larger;
+}
+
+.sectionMetrade {
+    background: linear-gradient(0deg, #FBF3EF 0%, #FBD5B2 76%);
+    padding: 100px 20px 0 20px;
+}
+
+.sectionOffer {
+    background: linear-gradient(0deg, #FFFED5 0%, #FCF6E7 48%, #FBF3EF 100%);
+    padding: 20px;
+}
+
+.sectionContact {
+    background: linear-gradient(0deg, #FBF5F5 0%, #FFFDD7 100%);
+    padding: 20px;
+}
+
+.sectionMovement {
+    padding: 0 20px 100px 20px;
+}
+
+.aboutTitle {
+   font-weight: 700; 
+   font-style: normal;
+    text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.25);
+}
+
+h4 {
+    font-weight: 700;
+    font-size: larger;
+}
+.redText {
+    color: red
+}
+.greenText {
+    color: green
+}

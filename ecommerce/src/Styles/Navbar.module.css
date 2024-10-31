@@ -1,0 +1,41 @@
+/*Style takes effect in Header.jsx*/
+
+.navUpper {
+    background: linear-gradient(90deg, rgba(236, 95, 0, 1) 0%, rgba(239, 115, 0, 1) 13%, rgba(250, 175, 3, 1) 20%);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.btnSellNow{
+    background-color: #173b45;
+    color: #fbf5f5;
+    font-weight: 600;
+    font-size: 1.5rem;
+    padding: 10px 20px 5px 20px;
+}
+
+.btnLogin {
+    background: none;
+    color: #173b45;
+    font-size: 2rem;
+    font-weight: 600;
+}
+.basketIcon {
+    font-size: 20px;    
+}
+
+
+.navUpper .navContainer {
+    display: flex;
+    align-items: center;
+    padding: 0 2.5rem;
+    gap: 1.5rem;
+}
+
+.navUpper .rightContainer {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+

@@ -1,0 +1,111 @@
+.cart-detail-page .cart-item-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.5rem;
+    padding: 0.5rem;
+    background-color: #fff;
+    border-radius: 0.3rem;
+    min-height: 9rem;
+}
+
+.cart-detail-page .image-name-pickup {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.cart-detail-page .image-name-pickup .stock-number {
+    font-size: 0.8rem;
+    padding-top: 0.2rem;
+}
+
+.cart-detail-page .name-pickup {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+.cart-detail-page .item-image {
+    width: 10rem;
+}
+
+.cart-detail-page .item-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.cart-detail-page .pick-up {
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.cart-detail-page .Myyrmäki {
+    color: #009e54;
+}
+
+.cart-detail-page .Karamalmi {
+    color: #e67300;
+}
+
+.cart-detail-page .Myllypuro {
+    color: #ee0017;
+}
+
+.cart-detail-page .price-and-quantity {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+}
+
+.cart-detail-page .item-price {
+    display:flex;
+    flex-direction: row;
+    gap: 0.25rem;
+    justify-content: center;
+    font-weight: 550;
+}
+
+.cart-detail-page .item-price span {
+    font-weight: 550;
+}
+
+.cart-detail-page .quantity-container {
+    border: 1px solid #b6b6b6;
+    border-radius: 0.25rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: center;
+    padding-top: 0.3rem;
+    padding-left: 0.6rem;
+    padding-right: 0.6rem;
+}
+
+.cart-detail-page .quantity-btn {
+    font-size: 0.7rem;
+}
+
+.cart-detail-page .quantity-number {
+    font-weight: 520;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+}
+
+.cart-detail-page .price-tag {
+    display: flex;
+    align-content: center;
+    margin-left: 1rem;
+    gap: 0.25rem;
+}
+
+.cart-detail-page .price-tag span {
+    font-weight: 550;
+}
+
+.cart-detail-page .delete-item-button {
+    color: #dc3545;
+    margin-left: 0.75rem;
+    margin-right: 0.5rem;
+
+}

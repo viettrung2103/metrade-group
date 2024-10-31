@@ -1,0 +1,137 @@
+/* Cards */
+.status-card {
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    padding: 1rem; /* Added padding for better spacing */
+}
+
+.status-card-title {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.status-card-text {
+    font-size: 2rem; /* Reduced size for smaller screens */
+    font-weight: bold;
+}
+
+/* Search Bar */
+.search-bar-container {
+    background-color: rgb(250 175 5);
+    padding: 0.5rem;
+    border-radius: 10px 10px 0 0;
+    align-items: center;
+}
+
+.search-input {
+    border: none;
+    border-radius: 5px;
+    padding: 0.75rem;
+    outline: none;
+}
+
+.search-button {
+    background-color: transparent;
+    border: none;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    margin-left: 10px;
+    border-radius: 5px;
+    box-shadow: none;
+    cursor: pointer;
+}
+
+/* Product Table */
+.user-table {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+.user-table-header {
+    font-weight: bold;
+}
+
+/* Button inside Table */
+.action-button {
+    background-color: var(--clr-navy) !important;
+    color: #FFFFFF;
+    border-radius: 5px;
+    border: none;
+    padding: 0.5rem 2rem;
+    cursor: pointer;
+    font-size: 0.875rem; /* Adjust font size for smaller screens */
+}
+
+td, tr {
+    text-align: center;
+}
+
+/* User status */
+.text-user-status-success {
+    color: green !important;
+}
+
+.text-user-status-warning, .text-warning {
+    color: rgb(176 114 0) !important;
+}
+
+.text-user-status-danger {
+    color: red !important;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 990px) {
+  .user-table td,
+  .user-table th {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 80px; /* Reduce max-width for better fit */
+  }
+
+  /* Responsive adjustment for table */
+  .table-responsive {
+    overflow-x: auto;
+  }
+
+  /* Adjust button padding and font size for smaller screens */
+  .action-button {
+    padding: 4px 8px;
+    font-size: 0.75rem;
+  }
+}
+
+/* Additional media query for even smaller screens (e.g., iPhone SE) */
+@media (max-width: 480px) {
+  /* Cards */
+  .status-card {
+    padding: 0.75rem; /* Reduce padding for smaller screens */
+  }
+
+  .status-card-text {
+    font-size: 1.5rem; /* Reduce text size further for very small screens */
+  }
+
+  /* Action Button */
+  .action-button {
+    padding: 4px 6px;
+    font-size: 0.75rem;
+    width: 100%; /* Make button full-width for small screens */
+  }
+
+  /* Search Bar */
+  .search-input {
+    padding: 0.5rem; /* Reduce padding */
+  }
+
+  .search-button {
+    padding: 0.5rem; /* Further reduce padding */
+  }
+
+  /* Product Table */
+  .user-table td,
+  .user-table th {
+    max-width: 70px; /* Further reduce max-width */
+  }
+}

@@ -1,0 +1,530 @@
+{
+  "/cart/add-cart-item": {
+    "post": {
+      "tags": ["Cart"],
+      "summary": "Add a product to the cart",
+      "security": [
+        {
+          "accessTokenCookie": []
+        }
+      ],
+      "requestBody": {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "product": {
+                  "$ref": "#/components/schemas/Product"
+                },
+                "adding_quantity": {
+                  "type": "number",
+                  "example": 2
+                }
+              },
+              "required": ["product", "adding_quantity"]
+            }
+          }
+        }
+      },
+      "responses": {
+        "200": {
+          "description": "Product added to cart successfully",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "success": {
+                    "type": "boolean"
+                  },
+                  "message": {
+                    "type": "string"
+                  },
+                  "limit_quantity": {
+                    "type": "number",
+                    "example": 3
+                  }
+                }
+              }
+            }
+          }
+        },
+        "400": {
+          "description": "Invalid product or quantity",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "success": {
+                    "type": "boolean",
+                    "example": false
+                  },
+                  "message": {
+                    "type": "string",
+                    "example": "Invalid Product Id"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "500": {
+          "description": "Server error",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "success": {
+                    "type": "boolean",
+                    "example": false
+                  },
+                  "message": {
+                    "type": "string",
+                    "example": "Failed to add product to cart"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "/cart/get-cart-item": {
+    "post": {
+      "tags": ["Cart"],
+      "summary": "Get specific cart item info",
+      "security": [
+        {
+          "accessTokenCookie": []
+        }
+      ],
+      "requestBody": {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "product_id": {
+                  "type": "string",
+                  "example": "670154eda0f091fa500887ea"
+                }
+              },
+              "required": ["product_id"]
+            }
+          }
+        }
+      },
+      "responses": {
+        "200": {
+          "description": "Cart item information retrieved successfully",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "success": {
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "message": {
+                    "type": "string",
+                    "example": "Get cart item info successfully"
+                  },
+                  "cartItem": {
+                    "$ref": "#/components/schemas/CartItem"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "404": {
+          "description": "Cart or cart item not found",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "success": {
+                    "type": "boolean",
+                    "example": false
+                  },
+                  "message": {
+                    "type": "string",
+                    "example": "No valid cart item"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "/cart/get-cart-detail": {
+    "get": {
+      "tags": ["Cart"],
+      "summary": "Get cart details including all items",
+      "security": [
+        {
+          "accessTokenCookie": []
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Cart details retrieved successfully",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "success": {
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "message": {
+                    "type": "string",
+                    "example": "Get cart item info successfully"
+                  },
+                  "cart_detail": {
+                    "$ref": "#/components/schemas/Cart"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "500": {
+          "description": "Server error",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "success": {
+                    "type": "boolean",
+                    "example": false
+                  },
+                  "message": {
+                    "type": "string",
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "/cart/update-quantity": {
+    "post": {
+      "tags": ["Cart"],
+      "summary": "Update quantity of a cart item",
+      "security": [
+        {
+          "accessTokenCookie": []
+        }
+      ],
+      "requestBody": {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "cart_item": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "example": "670154eda0f091fa500887ea"
+                    },
+                    "quantity": {
+                      "type": "number",
+                      "example": 1
+                    }
+                  },
+                  "required": ["id", "quantity"]
+                }
+              },
+              "required": ["cart_item"]
+            }
+          }
+        }
+      },
+      "responses": {
+        "200": {
+          "description": "Cart item quantity updated successfully",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "success": {
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "message": {
+                    "type": "string",
+                    "example": "Updated quantity successfully"
+                  },
+                  "cart_item": {
+                    "$ref": "#/components/schemas/CartItem"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "400": {
+          "description": "Invalid item id or quantity",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "success": {
+                    "type": "boolean",
+                    "example": false
+                  },
+                  "message": {
+                    "type": "string",
+                    "example": "Bad request! Invalid Item Id or Lack of quantity"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "500": {
+          "description": "Server error",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "success": {
+                    "type": "boolean",
+                    "example": false
+                  },
+                  "message": {
+                    "type": "string",
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "/cart/delete-cart-item/{id}": {
+    "delete": {
+      "tags": ["Cart"],
+      "summary": "Delete an item from the cart",
+      "security": [
+        {
+          "accessTokenCookie": []
+        }
+      ],
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "example": "670154eda0f091fa500887ea"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Cart item deleted successfully",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "success": {
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "message": {
+                    "type": "string",
+                    "example": "Delete cart item successfully"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "404": {
+          "description": "Cart item not found",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "success": {
+                    "type": "boolean",
+                    "example": false
+                  },
+                  "message": {
+                    "type": "string",
+                    "example": "Fail to delete cart item"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "/cart/checkout": {
+    "post": {
+      "tags": ["Cart"],
+      "summary": "Checkout the cart",
+      "security": [
+        {
+          "accessTokenCookie": []
+        }
+      ],
+      "requestBody": {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "checkout": {
+                  "type": "object",
+                  "properties": {
+                    "total_items": {
+                      "type": "number",
+                      "example": 5
+                    },
+                    "total_price": {
+                      "type": "number",
+                      "example": 150.75
+                    },
+                    "order_items": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "_id": {
+                            "type": "string",
+                            "example": "670154eda0f091fa500887ea"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "required": ["total_items", "total_price", "order_items"]
+                }
+              }
+            }
+          }
+        }
+      },
+      "responses": {
+        "200": {
+          "description": "Checkout successful",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "success": {
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "message": {
+                    "type": "string",
+                    "example": "Checkout successful and stock updated"
+                  },
+                  "order": {
+                    "$ref": "#/components/schemas/Order"
+                  },
+                  "user": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "422": {
+          "description": "Product in processing, cannot be checked out",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "success": {
+                    "type": "boolean",
+                    "example": false
+                  },
+                  "message": {
+                    "type": "string",
+                    "example": "Product in processing"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "402": {
+          "description": "Not enough balance",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "success": {
+                    "type": "boolean",
+                    "example": false
+                  },
+                  "message": {
+                    "type": "string",
+                    "example": "Not enough balance"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "500": {
+          "description": "Server error during checkout",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "success": {
+                    "type": "boolean",
+                    "example": false
+                  },
+                  "message": {
+                    "type": "string",
+                    "example": "Error during checkout"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

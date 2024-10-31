@@ -1,0 +1,26 @@
+.newfeed{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.newfeed h1{
+    margin: 2rem 0;
+    font-style: italic;
+    text-shadow: 1rem 1rem 1rem #00000042;
+}
+
+.newfeed h2{
+    margin: 2rem 0;
+}
+
+.error{
+    color: red;
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.pages{
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
